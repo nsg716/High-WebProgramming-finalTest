@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <!-- 콘솔 출력 설정 -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+
+        <!-- 메인 로그 파일 설정 -->
+        <RollingFile name="MainFileAppender"
+                     fileName="/tmp/cswp/logs/202020881/nsg716.log"
+                     filePattern="/tmp/cswp/logs/202020881/nsg716-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy /> <!-- 매일 로그파일 rotate -->
+                <SizeBasedTriggeringPolicy size="10MB" /> <!-- 10B 마다 rotate -->
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+
+        <!-- INFO 레벨 로그 전용 롤링 파일 Appender -->
+        <RollingFile name="InfoFileAppender"
+                     fileName="/tmp/cswp/logs/202020881/nsg716_info.log"
+                     filePattern="/tmp/cswp/logs/202020881/nsg716-%d{yyyy-MM-dd}-%i.info.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" /> <!-- 매일 rotate -->
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <Filters>
+                <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- kr.ac.kku.cs.wp 패키지의 Logger 설정 -->
+        <Logger name="kr.ac.kku.cs.wp" level="trace" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+
+
+        <!-- Root Logger 추가 설정 -->
+        <Root level="fatal">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="MainFileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>

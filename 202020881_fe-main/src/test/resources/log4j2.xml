@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- Root Logger 설정 -->
+        <Root level="trace">
+            <AppenderRef ref="Console" />
+        </Root>
+
+       
+        <!-- Root Logger 추가 설정 -->
+        <Root level="fatal">
+            <AppenderRef ref="Console" />
+        </Root>
+         <!-- 테스트 로그 확인을 위해 추가  -->
+        <Root level="debug">
+            <AppenderRef ref="Console" />
+        </Root>
+
+        <!-- kr.ac.kku.cs.wp.wsd.nsg716.support.sql 패키지의 Logger 설정 -->
+        <Logger name="kr.ac.kku.cs.wp.wsd.nsg716.support.sql" level="debug" additivity="false">
+            <AppenderRef ref="Console" />
+        </Logger>
+    </Loggers>
+</Configuration>
