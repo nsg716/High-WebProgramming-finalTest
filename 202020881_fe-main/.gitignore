@@ -1,0 +1,53 @@
+# Eclipse 특성 파일 제외
+*.classpath
+*.project
+*.settings/
+
+# IntelliJ 특성 파일 제외
+.idea/
+*.iml
+*.iws
+out/
+
+# OS 특성 파일 제외
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+
+# Maven target directory 파일 제외
+/target/
+
+# 컴파일된 Java 클래스 파일 제외
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# 패키지 파일 제외
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.tar
+
+# Temporary Files
+*.tmp
+*.temp
+<<<<<<< HEAD
+*.swp
+=======
+*.swp
+>>>>>>> 8065e0f1ed67d5c6e944f33eac4a5e7fec9b6985
